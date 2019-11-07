@@ -1,0 +1,3 @@
+EXTERNAL FUNCTION DllExit ()
+EXTERNAL FUNCTION DllStartup (TDCPlugin dcp)
+EXTERNAL FUNCTION DllProc (token, STRING msg1, STRING msg2)

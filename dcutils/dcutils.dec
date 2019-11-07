@@ -1,0 +1,26 @@
+$$LUF_ERROR				= -1		' fine not found
+$$SUF_ERROR				= -1		' unable to save file
+'$$RD                  = 0x0000
+'$$WR                  = 0x0001
+'$$RW                  = 0x0002
+'$$WRNEW               = 0x0003
+'$$RWNEW               = 0x0004
+'$$NOSHARE             = 0x0000
+'$$RDSHARE             = 0x0010
+'$$WRSHARE             = 0x0020
+'$$RWSHARE             = 0x0030
+EXTERNAL FUNCTION LoadUnixFile (STRING filepath,STRING text[])	' load text file in to string array
+EXTERNAL FUNCTION SaveUnixFile (STRING filepath,STRING text[])	' save string array to file
+EXTERNAL FUNCTION STRING WSAErrorToName (errorcode)				' convert WSA error code to string name
+EXTERNAL FUNCTION STRING trim (STRING str,char)					' trim char from string
+EXTERNAL FUNCTION STRING replace (STRING str,oldc,newc)			' replace oldchar with newchar
+EXTERNAL FUNCTION STRING GetTokenEx (STRING text,term,offset)	' return and subtract left most word from string beginning at offset
+EXTERNAL FUNCTION STRING GetTokenExB (STRING text,term,offset)	' use for token extraction.
+EXTERNAL FUNCTION STRING GetTokenEx2 (STRING text,term)
+EXTERNAL FUNCTION STRING GetTime ()								' return system time - mm:hh:ss GMT
+EXTERNAL FUNCTION STRING GetDate ()								' return date - dd/mm/yyyy
+EXTERNAL FUNCTION STRING textInsert (STRING text, STRING string, offset)	' insert text into string at offset
+EXTERNAL FUNCTION STRING textRemove (STRING string,chars,offset)	' remove n chars from string beginning at offset
+EXTERNAL FUNCTION STRING Replace (STRING source,STRING find,STRING replace)
+EXTERNAL FUNCTION STRING GetLastErrorStr ()
+EXTERNAL FUNCTION GetToken (STRING str,STRING token,term)		' return and subtract left most word(token) from string

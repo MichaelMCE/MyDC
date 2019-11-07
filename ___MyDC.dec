@@ -1,0 +1,3 @@
+EXTERNAL FUNCTION DispatchDCTMessage (token, STRING msg1, STRING msg2)
+EXTERNAL FUNCTION DispatchDCTMessageEx (token, STRING msg1, STRING msg2)
+EXTERNAL FUNCTION ProcessPluginMessage (token, STRING msg1, STRING msg2)

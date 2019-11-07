@@ -1,0 +1,5 @@
+hsplit   CURSOR  hsplit.cur
+vsplit   CURSOR  vsplit.cur
+msga      ICON    msga.ico
+msgb      ICON    msgb.ico
+Hub       ICON    Hub.ico

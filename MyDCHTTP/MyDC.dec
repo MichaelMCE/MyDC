@@ -1,0 +1,258 @@
+
+$$PCCA							= 250
+$$PCCB							= 251
+$$PCCC							= 252
+$$PCCD							= 253
+
+$$TARGET_RESOLUTION				= 100		' ms
+$$TimerKeepAlive				= 1			' keep alive timer id
+$$TimerUnload					= 2
+$$SendHubShare					= 3
+
+
+$$KeepAliveTime					= 119000	' 3 * 60 * 1000 = 3 minutes
+$$KeepAliveString				= " "		' keep alive data sent to hub 
+
+$$UI_NAME						= 0
+$$UI_SHARED						= 1
+$$UI_COMMENT					= 2
+$$UI_SPEED						= 3
+$$UI_EMAIL						= 4
+$$UI_Op							= 5
+
+$$PM_WTYPE_OUT					= 1
+$$PM_WTYPE_IN					= 2
+
+$$Hub							= 101
+$$Debug 						= 102
+$$Search						= 103
+$$SResults						= 104
+$$URLCatch						= 105
+$$BotMsg						= 106
+
+$$CmdLine 						= 401
+$$SearchLine					= 402
+$$Default_Port					= 411
+
+$$WM_SendHubSockMsg				= 1040
+$$WM_SendHubSockBin				= 1041
+
+$$WM_ClientConnected			= 1043
+$$WM_ClientDisconnected			= 1044
+
+$$WM_NickSet					= 1045
+
+$$WM_ClientCmdMsg				= 1047
+$$WM_PubCmdMsg					= 1048
+$$WM_PMCmdMsg					= 1049
+$$WM_HubCmdMsg					= 1050
+
+$$WM_ClientChatMsg				= 1051
+$$WM_HubChatMsg					= 1052
+$$WM_HubPMChatMsg				= 1053
+
+$$WM_SetHubShare				= 1056
+$$WM_SetHubOperators			= 1057
+$$WM_AddClients					= 1060
+$$WM_RemoveClients				= 1061
+$$WM_ClientJoin					= 1062
+$$WM_ClientQuit					= 1063
+$$WM_ClientOpTotal				= 1064
+$$WM_ClientOpJoin				= 1065
+$$WM_SearchResult				= 1067
+$$WM_FileSearch					= 1068
+$$WM_FindUser					= 1069
+$$WM_GetConSock					= 1070
+
+
+$$WM_IsUserConnected			= 1071
+$$WM_IsUserAnOp					= 1072
+$$WM_GetUserInfoAll				= 1075
+$$WM_ClientPMChatMsg			= 1054
+
+$$WM_CPrint						= 1080
+$$WM_MPrint						= 1081
+
+$$WM_InjectClientCmd			= 1082
+$$WM_InjectClientTxt			= 1083
+
+TYPE TCLIENTS
+	STRING * 32 .name			' there are no defined limits for these values, just hope for the best.
+	STRING * 32 .share
+	STRING * 64 .comment
+	STRING * 32	.speed
+	STRING * 32 .email
+	XLONG		.op				' 0 = no, 1 = yes
+END TYPE
+
+TYPE TDCPlugin
+	XLONG		.hLibPlugin
+	XLONG 		.hInst
+
+	XLONG		.udata1
+	XLONG		.udata2
+
+	XLONG		.lpnick
+	XLONG		.lpserver
+	XLONG		.port
+		
+	FUNCADDR	.pDllExit ()
+	FUNCADDR	.pDllFunc (XLONG,STRING,STRING)
+	XLONG		.lpDDCTM
+	XLONG		.lpPluginTitle
+END TYPE
+
+
+PACKED TZPASS
+	ULONG	.uncompsize
+	ULONG	.compsize
+END TYPE
+
+$$MDCTH_Error			=	0
+$$MDCTH_HandledStop		=	1		' MyDc Token Handler
+$$MDCTH_HandledCont		=	2
+$$MDCTH_UnhandledStop	=	3
+$$MDCTH_UnhandledCont	=	4
+
+$$DCT_UserCommand		=	1000
+
+$$DCT_Lock				=	1100
+$$DCT_Hello				=	1101
+$$DCT_HubName			=	1102
+$$DCT_OpList			=	1103
+$$DCT_NickList			=	1104
+$$DCT_MyINFO			=	1105
+$$DCT_MyNick			=	1106
+$$DCT_Direction			=	1107
+$$DCT_Search			=	1108
+$$DCT_Error				=	1109
+$$DCT_HubINFO			=	1110
+$$DCT_Get				=	1111
+$$DCT_Send				=	1112
+$$DCT_HubIsFull			=	1113
+$$DCT_BadPass			=	1114
+$$DCT_SR				=	1115
+$$DCT_Cancel			=	1116
+$$DCT_Canceled			=	1117
+$$DCT_GetNetInfo		=	1118
+$$DCT_Key				=	1119
+$$DCT_ValidateNick		=	1120
+$$DCT_ValidateDenide	=	1121
+$$DCT_MyPass			=	1122
+$$DCT_Supports			=	1123
+$$DCT_GetNickList		=	1124
+$$DCT_GetINFO			=	1125
+$$DCT_MultiSearch		=	1126
+$$DCT_To				=	1127
+$$DCT_ConnectToMe		=	1128
+$$DCT_RevConnectToMe	=	1129
+$$DCT_MultiConnectToMe	=	1130
+$$DCT_Kick				=	1131
+$$DCT_OpForceMove		=	1132
+$$DCT_ForceMove			=	1133
+$$DCT_GetPass			=	1134
+$$DCT_LogedIn			=	1135
+$$DCT_Quit				=	1136
+$$DCT_UserIP			=	1137
+$$DCT_HubTopic			=	1138
+
+$$DCT_Unknown			=   1139
+
+$$MDCT_ConnectToAddress	=	1140		' request a connect[ion] to hub
+$$MDCT_Disconnect		=	1141		' request a disconnect from hub
+$$MDCT_GetConSocket		=	1142		' dispatch current WinSock 'socket' handle  message
+$$MDCT_GetConnStatus	=	1143		' dispatch connection status message(s) ie connected, disconnected, connecting or disconnecting.
+$$MDCT_ConSocket		=	1144		' msg1 = connection winsock[et] handle
+$$MDCT_SendPubTxt		=	1145		' send public chat message (msg1) to hub, to all
+$$MDCT_SendPMsg			=	1146		' send private chat message (msg2) to person msg1 via hub
+$$MDCT_SetMyShareSize	=	1147		' set share size, in bytes.
+$$MDCT_GetMyShareSize	=	1148		' dispatch share size message
+$$MDCT_SetNick			=	1149		' set first choice nickname, only active upon next connection to hub.
+$$MDCT_GetNick			=	1150		' dispatch nick (msg1) and alt-nick (msg2) message.
+$$MDCT_Nick				=	1151		' nick has been set (msg1)
+$$MDCT_GetHubShareTotal =	1152		' dispatch total size of hub share message
+$$MDCT_SetHubShareTotal =	1153		' dispatch hub share total message
+$$MDCT_HubShareTotal	=	1154		' hub share message, msg1 = total hub share
+$$MDCT_MyShareSize		=	1155		' current share size in bytes
+
+$$MDCT_HubUsers			=	1158		' msg1 = total users on hub
+
+$$MDCT_InitiatingConn	=	1165
+$$MDCT_InitiatingDisconn =	1166
+
+$$MDCT_ClientOpTotal	=	1171
+$$MDCT_ClientOpJoin		=	1172
+$$MDCT_ClientJoin		=	1105		' ($$DCT_MyINFO) a client has joined. note: one join message per client even though some hubs like to send multiple MyINFO messages.
+$$MDCT_ClientQuit		=	1136
+$$MDCT_RemoveClients	=	1173
+$$MDCT_PMCmdMsg			=	1174
+$$MDCT_PMTxtMsg			=   1175
+$$MDCT_PubCmdMsg		=	1176
+$$MDCT_PubTxtMsg		=   1177
+$$MDCT_PrvTxtMsg		=	1170
+
+$$MDCT_Disconnected		=	1178
+$$MDCT_ClientConnected	=	1179
+$$MDCT_ClientCmdMsg		=   1180
+$$MDCT_ClientTxtMsg		=   1181
+$$MDCT_ClientJoinAll	=	1182
+'$$MDCT_CPrint			=	1183
+$$MDCT_PluginLoaded		=	1184
+$$MDCT_PluginUnloaded	=	1185
+'$$MDCT_ConStatus		=	1186
+
+$$MDCT_SendBin			=	1187
+$$MDCT_SendMsg			=	1188
+
+$$MDCT_NickListTotal	=	1190
+$$MDCT_NickList			=	1191
+$$MDCT_GetIntNickList	=	1192
+$$MDCT_IntNickList		=	1193
+$$MDCT_GetIntNickListFull = 1194
+
+$$MDCT_RequestShutDown	=	1195
+$$MDCT_ShuttingDown		=	1196
+
+$$MDCT_SendFileSearch	=	1199
+$$MDCT_UnknownCmd		=	1200
+
+$$MDCT_Plugin			=	1201
+$$MDCT_SetPassword		=	1202	' set hub password
+$$MDCT_GetPassword		=	1203	' dispatch password message
+$$MDCT_Password			=	1204	' msg1 = password
+
+$$MDCT_Unload			=	1205	' unload plug-in
+
+$$MDCT_IsUserConnected	=	1210
+$$MDCT_IsUserAnOp		=	1211
+$$MDCT_GetUserInfoAll	=	1212
+$$MDCT_GetOpList		=	1213
+$$MDCT_UpdateNewPlugin	=	1215
+
+$$MDCT_Debug			=	1300
+$$MDCT_Error			=	9999
+$$MDCE_TokenTimeout		=	"Unable to dispatch token"
+$$MDCE_NoPassSet		=	"Password not set"
+$$MDCE_NotConnected		=	"Not connected"
+$$MDCE_Connected		=	"Connected"				' already connected
+$$MDCE_ConnectFailed	=	"Connect failed"
+$$MDCE_PluginLoadFailed =	"Failed to initiate plug-in"
+$$MDCE_PluginFault		=	"Erroneous response from plugin"
+$$MDCE_BadPassword		=	"Unable to set password"
+
+$$MDCE_SocketInitWinSock =	"WSAStartup() error"
+$$MDCE_SocketListen		=	"listen() error"
+$$MDCE_SocketBind		=	"bind() error"
+$$MDCE_SocketConnect	=	"connect() error"
+$$MDCE_SocketOpen		=	"open() error"
+$$MDCE_SocketClose		=	"close() error"
+$$MDCE_SocketAccept		=	"accept() error"
+$$MDCE_SocketSend		=	"send() error"
+$$MDCE_SocketRecv		=	"recv() error"
+$$MDCE_SocketListenBin	=	"ListenBin():recv() error"
+$$MDCE_SocketListenMsg	=	"ListenMsg():recv() error"
+
+$$MDCE_SEventCreate		=	"CreateEvent() error"
+$$MDCE_SEventSelect		=	"EventSelect() error"
+$$MDCE_SEventEnumNetwork =	"EnumNetworkEvents() error"
+$$MDCE_SEventWaitForMul =	"WaitForMultipleEvents() error"
